@@ -3,10 +3,8 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-
     height: 100%;
     transform: translateY(-10%); 
-
     color: #FFFFFF;
 }
 
@@ -15,13 +13,14 @@
     font-size: 5rem;
     font-style: normal;
     font-weight: 200;
+    letter-spacing: 0.15em;
 }
 
 .welcome-page h2 {
-    margin-bottom: 3rem;
     font-size: 1.5rem;
     font-style: normal;
     font-weight: 200;
+    letter-spacing: 0.18em;
 }
 
 .welcome-page span {
