@@ -6,8 +6,8 @@ import { ReactComponent as Logo} from '../../assets/svg/Logo.svg'
 
 const NavBar = () => {
     return (
-        <nav class="navbar">
-            <Logo class="mossary-logo"/>
+        <nav className="navbar">
+            <Logo className="mossary-logo"/>
         </nav>
     )
 }
