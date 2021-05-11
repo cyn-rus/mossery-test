@@ -1,0 +1,29 @@
+.welcome-page {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    height: 100%;
+    transform: translateY(-10%); 
+
+    color: #FFFFFF;
+}
+
+.welcome-page h1 {
+    margin: 0;
+    font-size: 5rem;
+    font-style: normal;
+    font-weight: 200;
+}
+
+.welcome-page h2 {
+    margin-bottom: 3rem;
+    font-size: 1.5rem;
+    font-style: normal;
+    font-weight: 200;
+}
+
+.welcome-page span {
+    font-weight: 630;
+}
