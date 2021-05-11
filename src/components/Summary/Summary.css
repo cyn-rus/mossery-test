@@ -1,0 +1,23 @@
+.summary-field {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    color: #003F59;
+}
+
+.title {
+    font-size: 1.5rem;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    margin-left: 2rem;
+}
+
+.summary {
+    font-size: 1.5rem;
+    font-weight: 400;
+    letter-spacing: 0.18em;
+    margin-right: 5rem;
+    text-align: left;
+    width: 50%;
+}
