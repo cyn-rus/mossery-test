@@ -1,0 +1,25 @@
+.dob-page {
+    display: flex;
+    flex-direction: column;
+}
+
+.dob-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 5rem;
+}
+
+.dob-content h1 {
+    color: white;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+}
+
+.date-picker {
+    border: none;
+    background-color: #6EC3C3;
+    color: #003F59;
+    border-radius: 0.3rem;
+    font-size: 1rem;
+}
