@@ -1,0 +1,15 @@
+.personal-page {
+    display: flex;
+    flex-direction: column;
+}
+
+.personal-page form {
+    margin-top: 2rem;
+}
+
+.next-page-button {
+    margin-top: 2.5rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

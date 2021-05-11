@@ -1,115 +1,133 @@
-import React from "react"
-import { Formik, Field, ErrorMessage, useFormik } from "formik";
+import React, { useEffect, useContext } from "react"
+import { useHistory } from "react-router-dom"
+import { useFormik } from "formik"
+import { AppContext } from '../../context';
 import * as yup from "yup"
-import FormField from "../../components/FormField/FormField"
-import Template from '../../components/Template/Template';
+
 import "./Personal.css"
 
-const initialValues = {
-    firstName: "",
-    lastName: "",
-    email: "",
-    pw: "",
-    confPw: ""
-}
+import FormField from "../../components/FormField/FormField"
+import Template from '../../components/Template/Template'
+import Button from "../../components/Button/Button"
 
-const validateForm = yup.object().shape({
+const validationSchema = yup.object().shape({
     firstName: yup
         .string()
+        .min(1)
         .required("First Name is required"),
     lastName: yup
         .string(),
     email: yup
         .string()
+        .min(3)
         .required("Email is required")
-        .matches(
-            /^(\w|\.|\_|\-)+[@](\w|\_|\-|\.)+[.]\w{2,3}$/,
-            "Invalid email address"
-            ),
-    pw: yup
+        .email("Invalid email address"),
+    password: yup
         .string()
-        .required("Password in required")
+        .required("Password is required")
         .matches(
             /^.*(?=.{8,})((?=.*[!@#$%^&*()\-_=+{};:,<.>]){1})(?=.*\d)((?=.*[a-z]){1})((?=.*[A-Z]){1}).*$/,
             "Password must contain at least 8 characters, one uppercase, one number and one special case character"
         ),
-    confPw: yup
+    confPassword: yup
         .string()
         .required("Confirmation Password is required")
-        .when("pw", {
-            is: pw => (pw && pw.length > 0 ? true : false),
-            then: yup.string().oneOf([yup.ref("pw")], "Password and Confirmation Password don't match")
+        .when("password", {
+            is: password => (password && password.length > 0 ? true : false),
+            then: yup.string().oneOf([yup.ref("password")], "Password and Confirmation Password don't match")
         })
-    })
-    
+})
+
 const Personal = () => {
+    const { formData: initialValues, setFormData } = useContext(AppContext)
+    const history = useHistory()
+
     const formik = useFormik({
         initialValues,
-        validateForm
-        // onSubmit
+        validationSchema,
     })
-    
+
     const firstNameProps = formik.getFieldProps("firstName")
     const lastNameProps = formik.getFieldProps("lastName")
-    const emailProps = formik.getFieldProps("emailProps")
-    const pwProps = formik.getFieldProps("pw")
-    const confPwProps = formik.getFieldProps("confPw")
+    const emailProps = formik.getFieldProps("email")
+    const passwordProps = formik.getFieldProps("password")
+    const confPasswordProps = formik.getFieldProps("confPassword")
 
+    useEffect(() => {
+        if (localStorage.getItem('formData')){
+            const data = localStorage.getItem(('formData'));
+            formik.setValues(JSON.parse(data));
+        }
+    }, [])
+    
     return (
         <Template>
-            <button>
-                ← Homepage
-            </button>
-            <form onSubmit={formik.handleSubmit}>
-                <FormField
-                    label="First Name"
-                    type="text"
-                    name="firstName"
-                    {...firstNameProps}
-                />
-                {formik.touched.firstName && formik.errors.firstName ? (
-                    <div>{formik.errors.firstName}</div>
-                ) : null}
-                <FormField
-                    label="Last Name"
-                    type="text"
-                    name="lastName"
-                    {...lastNameProps}
-                />
-                {formik.touched.lastName && formik.errors.lastName ? (
-                    <div>{formik.errors.lastName}</div>
-                ) : null}
-                <FormField 
-                    label="Email"
-                    type="email"
-                    name="email"
-                    {...emailProps}
-                />
-                {formik.touched.email && formik.errors.email ? (
-                    <div>{formik.errors.email}</div>
-                ) : null}
-                <FormField 
-                    label="Password"
-                    type="pw"
-                    name="pw"
-                    {...pwProps}
-                />
-                {formik.touched.pw && formik.errors.pw ? (
-                    <div>{formik.errors.pw}</div>
-                ) : null}
-                <FormField 
-                    label="Confirmation Password"
-                    type="pw"
-                    name="confPw"
-                    {...confPwProps}
-                />
-                {formik.touched.confPw && formik.errors.confPw ? (
-                    <div>{formik.errors.confPw}</div>
-                ) : null}
-                <button type="submit" disabled={!(formik.isValid && formik.dirty)}>
-                    Next Page
-                </button>
-            </form>
+            <div className="personal-page">
+                <Button
+                    secondary
+                    onClick={() => history.push("/homepage")}
+                >
+                    ← Homepage
+                </Button>
+                <form onSubmit={formik.handleSubmit}>
+                    <FormField
+                        label="First Name"
+                        type="text"
+                        name="firstName"
+                        touched={formik.touched.firstName}
+                        errors={formik.errors.firstName}
+                        {...firstNameProps}
+                    />
+                    <FormField
+                        label="Last Name"
+                        type="text"
+                        name="lastName"
+                        touched={formik.touched.lastName}
+                        errors={formik.errors.lastName}
+                        {...lastNameProps}
+                    />
+                    <FormField 
+                        label="Email"
+                        type="email"
+                        name="email"
+                        touched={formik.touched.email}
+                        errors={formik.errors.email}
+                        {...emailProps}
+                    />
+                    <FormField 
+                        label="Password"
+                        type="password"
+                        name="password"
+                        touched={formik.touched.password}
+                        errors={formik.errors.password}
+                        {...passwordProps}
+                    />
+                    <FormField 
+                        label="Confirmation Password"
+                        type="password"
+                        name="confirmedPassword"
+                        touched={formik.touched.confPassword}
+                        errors={formik.errors.confPassword}
+                        {...confPasswordProps}
+                    />
+                    
+                    <div className="next-page-button">
+                        <Button
+                            primary 
+                            type="submit"
+                            disabled={!(formik.isValid && formik.dirty)}
+                            onClick={() => {
+                                    localStorage.setItem('formData', JSON.stringify({...formik.values, dob: formik.values.dob }))
+                                    setFormData(formik.values)
+                                    history.push("/dob")
+                                }
+                            }
+                        >
+                            NEXT PAGE
+                        </Button>
+                    </div>
+                </form>
+            </div>
         </Template>
     )   
 
