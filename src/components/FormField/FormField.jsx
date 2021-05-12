@@ -8,8 +8,8 @@ function FormField({name, label, touched, errors, ...rest}) {
         <div className="form-field">
             <label htmlFor={name}>{label}</label>
             <div className="input-field">
-                <div style={{color: touched && errors ? '' : "#0i3f59"}} className="error-message">
-                    {touched && errors ? errors : '.'}
+                <div className="error-message">
+                    {touched && errors ? errors : '*'}
                 </div>
                 <input 
                     id={name} 
