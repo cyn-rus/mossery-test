@@ -13,10 +13,10 @@ import Button from "../../components/Button/Button"
 const validationSchema = yup.object().shape({
     firstName: yup
         .string()
-        .min(1)
         .required("First Name is required"),
     lastName: yup
-        .string(),
+        .string()
+        .required("Last Name is required"),
     email: yup
         .string()
         .min(3)
