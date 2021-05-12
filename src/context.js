@@ -1,12 +1,13 @@
 import React, { useState, useEffect } from 'react'
 
 const initialValues = {
-  firstName: "",
-  lastName: "",
-  email: "",
-  password: "",
-  confPassword: "",
-  dob: new Date()
+  firstName: "a",
+  lastName: "b",
+  email: "a@gmail.com",
+  password: "Abcdefghi0)",
+  confPassword: "Abcdefghi0)",
+  dob: new Date(),
+  agreement: false,
 }
 
 export const AppContext = React.createContext({ formData: {...initialValues}, setFormData: () => null})
