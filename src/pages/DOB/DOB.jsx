@@ -3,10 +3,8 @@ import { useHistory } from "react-router-dom"
 import DatePicker from "react-datepicker"
 import Template from '../../components/Template/Template'
 import Button from "../../components/Button/Button"
-import "react-datepicker/dist/react-datepicker.css";
-
 import { AppContext } from '../../context';
-
+import "react-datepicker/dist/react-datepicker.css";
 import "./DOB.css"
 
 const DOB = () => {
@@ -27,9 +25,9 @@ const DOB = () => {
                     <h1>Date of Birth</h1>
                     <DatePicker
                         className="date-picker"
-                        selected={new Date()}
+                        selected={new Date(formData.dob)}
                         onChange={newDate => {
-                                const newFormValue = {...formData, dob: newDate} 
+                                const newFormValue = {...formData, dob: newDate}
                                 localStorage.setItem('formData', JSON.stringify(newFormValue))
                                 setFormData(newFormValue)
                             } 
