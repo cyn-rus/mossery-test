@@ -58,7 +58,7 @@ const Personal = () => {
             const data = localStorage.getItem(('formData'));
             formik.setValues(JSON.parse(data));
         }
-    }, [])
+    })
     
     return (
         <Template>
