@@ -58,7 +58,7 @@ const Personal = () => {
             const data = localStorage.getItem(('formData'));
             formik.setValues(JSON.parse(data));
         }
-    }, [])
+    }, [formik])
     
     return (
         <Template>
@@ -117,7 +117,7 @@ const Personal = () => {
                             type="submit"
                             disabled={!(formik.isValid && formik.dirty)}
                             onClick={() => {
-                                    localStorage.setItem('formData', JSON.stringify({...formik.values, dob: formik.values.dob }))
+                                    localStorage.setItem('formData', JSON.stringify({...formik.values, dob: initialValues.dob, agreement: initialValues.agreement }))
                                     setFormData(formik.values)
                                     history.push("/dob")
                                 }
