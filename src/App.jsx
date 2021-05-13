@@ -1,5 +1,5 @@
 import React from "react"
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom"
+import { BrowserRouter as Router, Switch, Route, Redirect } from "react-router-dom"
 
 import './App.css'
 
@@ -14,7 +14,9 @@ function App() {
   return (
     <AppProvider> 
       <Router>
-        {/* <Redirect exact from="/" to="homepage" /> */}
+        <Route exact path="/">
+          <Redirect to="/homepage" /> 
+        </Route>
         <Switch>
           <Route exact path="/homepage" component={Welcome}/>
           <Route exact path="/personal" component={Personal} />
