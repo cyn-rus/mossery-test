@@ -21,7 +21,7 @@ const Agreement = () => {
             agreement: !formData.agreement
         })
     }
-    
+
     const openModal = () => {
         setModalIsOpen(true);
     }
@@ -51,13 +51,21 @@ const Agreement = () => {
                 password: formData.password
             }
         })
-        if (response)
-        localStorage.removeItem("formData")
+        if (response) {
+            localStorage.removeItem("formData")
+            setFormData(
+                {
+                    firstName: "",
+                    lastName: "",
+                    email: "",
+                    password: "",
+                    confPassword: "",
+                    dob: new Date(),
+                    agreement: false
+                }
+            )
+        }
     }
-
-    // useEffect(() => {
-    //     console.log(formData)
-    // }, [formData.agreement])
 
     return (
         <Template>
