@@ -8,7 +8,7 @@ const Welcome = () => {
     const history = useHistory();
     return (
         <Template>
-            <div class="welcome-page">
+            <div className="welcome-page">
                 <h1>Welcome</h1>
                 <h2>We believe that everyone is <span>creative</span> </h2>
                 <Button
