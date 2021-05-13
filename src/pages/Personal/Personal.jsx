@@ -58,7 +58,8 @@ const Personal = () => {
             const data = localStorage.getItem(('formData'));
             formik.setValues(JSON.parse(data));
         }
-    })
+        // eslint-disable-next-line
+    }, [])
     
     return (
         <Template>
