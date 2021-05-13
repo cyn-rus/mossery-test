@@ -1,0 +1,61 @@
+.agreement-page {
+    margin: 3rem 10rem;
+    transform: translateY(-8%);
+}
+
+.summary-data {
+    background-color: white;
+    border-radius: 1rem;
+    box-shadow: 0rem 0.75rem 1.5rem 0.75rem rgb(5, 53, 72);
+    margin-bottom: 0.5rem;
+}
+
+.agreement-checkbox {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
+
+.agreement-checkbox p {
+    margin-left: 0.5rem;
+    color: white;
+    font-size: 1.1rem;
+    font-style: normal;
+    font-weight: 350;
+    letter-spacing: 0.1em;
+}
+
+.agreement-checkbox span {
+    color: #887EFB;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.agreement-checkbox span:hover {
+    text-decoration: underline;
+}
+
+.submit-button {
+    display: flex;
+    justify-content: center;
+}
+
+.close-button {
+    transform: translateY(-40%);
+    margin-left: 40%;
+    background-color: #6EC3C3;
+    color: white;
+    border: none;
+    font-size: 1.6rem;
+    padding-left: 1.5%;
+    padding-right: 1.5%;
+    line-height: 2.4rem;
+    letter-spacing: 0.18em;
+    cursor: pointer;
+    border-radius: 0.5rem;
+}
+
+.close-button:hover {
+    background-color: #4db3b3;
+}
